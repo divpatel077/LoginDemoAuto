@@ -31,7 +31,7 @@ public class Test1 extends Base {
 
 
     @Test
-    public void fortest() throws IOException {
+    public void forTest() throws IOException {
         log = new login(driver);
         int temp1= Integer.parseInt(getCellData("valid",0,0));
         for(int i=1; i<=temp1; i++){

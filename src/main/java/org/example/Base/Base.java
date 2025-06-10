@@ -1,5 +1,6 @@
 package org.example.Base;
 
+import org.example.Util.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,6 +21,7 @@ public class Base {
 
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        TestListener.driver = driver;
     }
     @BeforeMethod
     public void BMethod(){
@@ -33,6 +35,4 @@ public class Base {
             driver.quit();
         }
     }
-
-
 }
