@@ -32,4 +32,30 @@ public class Excel {
         return totalRows;
     }
 
+    public static Object[][] getSheetData(String sheetName) throws IOException {
+        FileInputStream fis = new FileInputStream(new File("src/test/resources/TestData.xlsx"));
+        Workbook workbook = WorkbookFactory.create(fis);
+        Sheet sheet = workbook.getSheet(sheetName);
+
+        int totalRows = sheet.getLastRowNum(); // Assuming row 0 is header
+        int totalColumns = sheet.getRow(0).getLastCellNum();
+
+        Object[][] data = new Object[totalRows][totalColumns];
+
+        for (int i = 1; i <= totalRows; i++) { // Start from 1 if row 0 is header
+            Row row = sheet.getRow(i);
+            for (int j = 0; j < totalColumns; j++) {
+                if (row != null) {
+                    Cell cell = row.getCell(j);
+                    data[i - 1][j] = (cell != null) ? cell.toString() : "";
+                }
+            }
+        }
+
+        workbook.close();
+        fis.close();
+
+        return data;
+    }
+
 }
