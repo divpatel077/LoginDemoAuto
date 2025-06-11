@@ -2,6 +2,7 @@ package org.example.Test;
 
 import org.example.Base.Base;
 import org.example.LogInPage.login;
+import org.example.Util.Excel;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -33,11 +34,13 @@ public class Test1 extends Base {
     @Test
     public void forTest() throws IOException {
         log = new login(driver);
-        int temp1= Integer.parseInt(getCellData("valid",0,0));
-        for(int i=1; i<=temp1; i++){
+        int i = 1;
+        while(i <= Excel.getTotalRows("valid")){
                 String user = getCellData("valid",i,0);
                 String pass = getCellData("Valid",i,1);
                 log.setLogin(user, pass);
+                i++;
+                driver.get("https://the-internet.herokuapp.com/login");
         }
     }
 }

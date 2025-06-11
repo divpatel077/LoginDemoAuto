@@ -22,4 +22,14 @@ public class Excel {
         fis.close();
         return value;
     }
+    public static int getTotalRows(String sheetName) throws IOException {
+        FileInputStream fis = new FileInputStream(new File("src/test/resources/TestData.xlsx"));
+        Workbook workbook = WorkbookFactory.create(fis);
+        Sheet sheet = workbook.getSheet(sheetName);
+        int totalRows = sheet.getLastRowNum(); // No need to add +1 because we will use 1-based indexing in your test
+        workbook.close();
+        fis.close();
+        return totalRows;
+    }
+
 }
