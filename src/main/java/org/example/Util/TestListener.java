@@ -15,6 +15,7 @@ public class TestListener implements ITestListener {
     ExtentSparkReporter htmlReporter;
     ExtentReports extent;
     ExtentTest test;
+    String SSpath = "screenshots/testName.png";
 
     public static WebDriver driver;
 
@@ -40,7 +41,7 @@ public class TestListener implements ITestListener {
         test.log(Status.PASS, "Test Passed: " + result.getMethod().getMethodName());
         String screenshotPath = Screenshot.SS(driver, result.getMethod().getMethodName());
         try {
-            test.addScreenCaptureFromPath(screenshotPath);
+            test.addScreenCaptureFromPath(SSpath);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +53,7 @@ public class TestListener implements ITestListener {
         test.log(Status.FAIL, result.getThrowable());
         String screenshotPath = Screenshot.SS(driver, result.getMethod().getMethodName());
         try {
-            test.addScreenCaptureFromPath(screenshotPath);
+            test.addScreenCaptureFromPath(SSpath);
         } catch (Exception e) {
             e.printStackTrace();
         }
